@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>BAIStudios | Support Us</title>
+  <meta content="BAIStudios | Support Us" property="og:title" />
+  <meta content="Support BAIStudios's development via PayPal." property="og:description" />
+  <meta content="#7CB5F0" data-react-helmet="true" name="theme-color" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/loading.css">
+  <script src="https://kit.fontawesome.com/1486c19ca3.js" crossorigin="anonymous"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AThOqnZ8lvB9EADDqFt2H8EDPXaat23TL2x4m0iCW1MqGI8XkC8_iu5PlqyoacoNJ8VfjKotrGvYEKC7&vault=true&currency=USD" data-sdk-integration-source="developer-studio"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+    .supporter-status-box {
+      border-radius: 0.2rem;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      color: white;
+      font-size: 0.95rem;
+    }
+
+    .supporter-status-box i {
+      margin-right: 0.8rem;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .supporter-status-box p {
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    #supporter-status-active {
+      background-color: rgba(50, 150, 50, 0.6);
+    }
+
+    #supporter-status-donation {
+      background-color: rgba(80, 120, 180, 0.7);
+    }
+
+    #discord-relogin-prompt {
+      background-color: rgba(80, 80, 100, 0.6);
+    }
+
+    #transaction-history-section {
+      margin-top: 2rem;
+    }
+
+    #transaction-history-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    #transaction-history-table th,
+    #transaction-history-table td {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      font-size: 0.85rem;
+      color: #eee;
+      vertical-align: middle;
+    }
+
+    #transaction-history-table th {
+      background-color: rgba(0, 0, 0, 0.3);
+      font-weight: 600;
+      color: white;
+    }
+
+    #transaction-history-table tbody tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    #transaction-history-table td.amount {
+      text-align: right;
+      font-weight: 500;
+    }
+
+    #history-loader {
+      text-align: center;
+      padding: 1rem;
+      color: #ccc;
+    }
+
+    #no-history-message {
+      text-align: center;
+      padding: 1rem;
+      color: #aaa;
+    }
+
+    .cancel-button {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.2rem;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: background-color 0.2s ease-in-out;
+      margin-left: 1rem;
+      white-space: nowrap;
+    }
+
+    .cancel-button:hover {
+      background-color: #c82333;
+    }
+
+    .cancel-button:disabled {
+      background-color: #6c757d;
+      cursor: not-allowed;
+    }
+
+    .profile-box {
+      border-radius: 0.2rem;
+      display: flex;
+      align-items: center;
+      padding: 1.5rem;
+    }
+
+    .profile-box img {
+      padding-right: 1rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .profile-box .pbox-title {
+      width: auto;
+      font-weight: 600;
+    }
+
+    .profile-box .logout-link {
+      margin-left: auto;
+      text-decoration: none;
+    }
+
+    .discord-invite-box {
+      border-radius: 0.2rem;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+      background-color: rgba(88, 101, 242, 0.7);
+      color: white;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    .discord-invite-box p {
+      margin: 0 0 0.5rem 0;
+    }
+
+    .discord-invite-box a {
+      color: #e0e0ff;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    .discord-invite-box a:hover {
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <div class="topnav">
+      <a class="nav-tab" href="/contact">CONTACT</a>
+      <a class="nav-tab" href="https://central3465.github.io/applications/">CAREERS</a>
+      <a class="nav-tab active" href="/support.html">SUPPORT</a>
+      <a class="nav-tab" href="/games.html">GAMES</a>
+      <a class="nav-tab" href="/about.html">ABOUT</a>
+      <a class="nav-tab" href="/home.html">HOME</a>
+      <a class="nav-tab" href="https://twitter.com/MetaMethodPT" target="_blank"><i class=" right-padding-nav twitter fa-brands fa-twitter"></i></a>
+      <a class="nav-tab" href="https://www.youtube.com/@MetaMethod" target="_blank"><i class="youtube fa-brands fa-youtube"></i></a>
+      <a class="nav-tab" href="https://discord.gg/kyf2ydR26R" target="_blank"><i class="left-padding-nav discord fa-brands fa-discord"></i></a>
+    </div>
+  </div>
+
+  <div class="main-holder" style="padding-top: 80px;">
+    <div class="sliced-main">
+      <section class="main-box">
+        <h1 id="title">
+          <center>SUPPORT BAIStudios</center>
+        </h1>
+        <h2 id="subtitle">
+          <center>By optionally donating £3 or more, you can gain access to update teasers. We use these donations to support our developers!</center>
+        </h2>
+        <br>
+      </section>
+    </div>
+  </div>
+
+  <div class="stats" style="background-image: url(/images/GlacierThumbNOTEXT.png)">
+    <div class="game-boxes-holder">
+
+      <div class="game-box" id="loader">
+        <div class="logo-holder">
+          <img src="/images/BaiStudios2.jpeg" class="logo">
+        </div>
+      </div>
+
+      <div class="game-box" style="width: 100%; display: flex; justify-content: center;">
+        <div id="login-prompt" style="display: none;">
+          <div class="game-box-name">
+            <center>Login Required</center>
+          </div>
+          <div class="game-box-desc">
+            <center>Please login with Discord to access options.</center>
+          </div>
+          <div style="padding-top: 2rem;">
+            <a href="https://discord.com/oauth2/authorize?client_id=1287416838791102485&response_type=code&redirect_uri=http%3A%2F%2F127.0.0.1%3A3000%2Fsupport.html&scope=identify+email+guilds+connections+dm_channels.read" class="position-box input-hover" style="text-decoration: none; width: 15rem;">
+              <i class="fa-brands fa-discord pbox-icons" style="color: #5865F2;"></i> Login with Discord
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="supporter-wrapper">
+        <div class="position-holder-small" id="supporter-content" style="display: none; width: 100%;">
+          <div class="position-padding">
+            <div class="position-box-anti" style="border-radius: 0.2rem; display: flex; align-items: center; padding: 1.5rem;">
+              <div style="padding-right: 1rem;">
+                <img id="user-avatar" src="/images/BaiStudios2.jpeg" alt="Avatar" style="width: 40px; height: 40px; border-radius: 50%;">
+              </div>
+              <div class="pbox-title" id="user-greeting" style="width: auto; font-weight: 600;">Welcome, Guest!</div>
+              <div style="margin-left: auto;">
+                <a href="/auth/logout" title="Logout" style="text-decoration: none;">
+                  <i class="fa-solid fa-right-from-bracket pbox-icons"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div id="discord-invite-general" class="position-padding supporter-uniform-width">
+            <div class="position-box-anti discord-invite-box">
+              <p>Join our official Discord server recieve community alerts, updates and access supporter perks!</p>
+              <a href="https://discord.gg/kyf2ydR26R" target="_blank">Join BAIStudios on Discord →</a>
+            </div>
+          </div>
+          <!-- SUBSCRIPTION: Active Supporter Section -->
+          <div id="supporter-status-section-active" class="position-padding supporter-uniform-width" style="display: none;">
+            <div class="position-box-anti supporter-status-box" id="supporter-status-active">
+              <i class="fa-solid fa-heart" style="color: #ffdddd;"></i>
+              <p id="supporter-status-text-active">You are a valued supporter!</p>
+              <button id="cancel-subscription-button" class="cancel-button">Cancel Subscription</button>
+            </div>
+          </div>
+
+          <!-- DONATION: Temporary Supporter Section -->
+          <div id="supporter-status-section-donation" class="position-padding supporter-uniform-width" style="display: none;">
+            <div class="position-box-anti supporter-status-box" id="supporter-status-donation">
+              <i class="fa-solid fa-gift" style="color: #ddffd4;"></i>
+              <p id="supporter-status-text-donation">Thank you for your donation! Supporter perks active until [Date].</p>
+            </div>
+          </div>
+
+          <div id="discord-relogin-prompt-section" class="position-padding supporter-uniform-width" style="display: none;">
+            <div class="position-box-anti supporter-status-box" id="discord-relogin-prompt">
+              <i class="fa-brands fa-discord" style="color: #b0c0ff;"></i>
+              <p>Missing your Supporter role in Discord? Please try logging out and logging back in on this page to sync your status.</p>
+            </div>
+          </div>
+
+          <div id="message-area" class="position-padding supporter-uniform-width" style="display: none;">
+            <div class="position-box-anti" id="message-box" style="border-radius: 0.2rem;">
+              <p id="message-text" style="margin: 0; padding: 0.5rem; width: 100%; text-align: center;"></p>
+            </div>
+          </div>
+
+          <div class="position-padding">
+            <div class="position-box-anti" style="border-radius: 0.2rem 0.2rem 0 0; background-color: rgba(0, 0, 0, 0.6); padding: 1.5rem; justify-content: center; text-align: center;">
+              <div class="pbox-title" style="font-weight: 600;">Choose Your Support Method</div>
+            </div>
+
+            <div class="position-box-anti" style="border-radius: 0; flex-direction: column; align-items: stretch; padding: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 style="margin: 0; color: white; font-size: 1.2rem; font-weight: 600;"> <i class="fa-solid fa-rotate"></i> Monthly Subscription</h3>
+              </div>
+              <p style="color: #ccc; font-size: 0.9rem; margin-top: 0; margin-bottom: 1rem;">Support us with a recurring monthly payment ($1 increments, minimum $3).</p>
+
+              <div style="display: flex; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                <label for="subscription-quantity" style="color: white; margin-right: 0.5rem; font-size: 0.9rem;">Support Level ($1 increments):</label>
+                <input type="number" id="subscription-quantity" min="3" step="1" value="3" placeholder="3" style="width: 70px; height: 2.5rem; margin-right: 1rem;" class="input-hover">
+                <span class="support-desc">= $<span id="calculated-amount">3</span>.00 GBP / month</span>
+                <div id="paypal-subscribe-button-container" style="min-width: 200px;"></div>
+              </div>
+              <div id="subscribe-error" class="pbox-text" style="color: #ff8a8a; display: none; margin-top: 0.5rem; font-size: 0.85rem;"></div>
+            </div>
+
+            <div class="position-box-anti" style="border-radius: 0 0 0.2rem 0.2rem; flex-direction: column; align-items: stretch; padding: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 style="margin: 0; color: white; font-size: 1.2rem; font-weight: 600;"><i class="fa-solid fa-hand-holding-dollar"></i> One-Time Donation</h3>
+              </div>
+              <p style="color: #ccc; font-size: 0.9rem; margin-top: 0; margin-bottom: 1rem;">Make a single contribution (minimum $3).</p>
+
+              <div style="display: flex; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                <label for="onetime-amount" style="color: white; margin-right: 0.5rem; font-size: 0.9rem;">Amount (USD): $</label>
+                <input type="number" id="onetime-amount" min="3.00" step="1" value="3.00" placeholder="3.00" style="width: 80px; height: 2.5rem; margin-right: 1rem;" class="input-hover">
+                <div id="paypal-onetime-button-container" style="min-width: 200px;"></div>
+              </div>
+              <div id="onetime-error" class="pbox-text" style="color: #ff8a8a; display: none; margin-top: 0.5rem; font-size: 0.85rem;"></div>
+            </div>
+          </div>
+
+          <div id="transaction-history-section" class="position-padding">
+            <div class="position-box-anti" style="border-radius: 0.2rem; flex-direction: column; align-items: stretch; padding: 1.5rem;">
+              <h3 style="margin: 0 0 1rem 0; color: white; font-size: 1.2rem; font-weight: 600;"><i class="fa-solid fa-receipt"></i> Transaction History</h3>
+              <div id="history-loader" style="display: none;">Loading history...</div>
+              <div id="no-history-message" class="pbox-text" style="display: none;">No transactions found.</div>
+              <table id="transaction-history-table" style="display: none;">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th class="amount">Amount</th>
+                    <th>ID</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo-holder">
+      <img src="/images/BaiStudios2.jpeg" class="footer-logo">
+    </div>
+    <div class="footer-nav-holder">
+      <a style="font-size: 1rem;" class="footer-tab" href="/">Home</a>
+      <a style="font-size: 1rem;" class="footer-tab" href="/about.html">About</a>
+      <a style="font-size: 1rem;" class="footer-tab" href="/games.html">Games</a>
+      <a style="font-size: 1rem;" class="footer-tab" href="/support.html">Support</a>
+      <a style="font-size: 1rem;" class="footer-tab" href="https://central3465.github.io/applications/">Careers</a>
+      <a style="font-size: 1rem;" class="footer-tab" href="/contact">Contact</a>
+    </div>
+    <div class="footer-media-holder">
+      <a style="padding-top: 0rem;" class="nav-tab" href="https://discord.gg/kyf2ydR26R" target="_blank"><i class="discord fa-brands fa-discord"></i></a>
+      <a style="padding-top: 0rem;" class="nav-tab" href="https://www.youtube.com/@MetaMethod" target="_blank"><i class="youtube fa-brands fa-youtube"></i></a>
+      <a style="padding-top: 0rem;" class="nav-tab" href="https://twitter.com/MetaMethodPT" target="_blank"><i class="twitter fa-brands fa-twitter"></i></a>
+    </div>
+    <div class="footer-desc">
+      <center>© BAIStudios</center>
+      <center><span id="currentYear"></span></center>
+    </div>
+    <script>
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+    <div class="footer-desc padding-bottom-2">
+      <center>All rights reserved.</center>
+    </div>
+    <div class="footer-desc padding-bottom-2"><center>Inspired by the amazing work of <a href="https://metamethod.pt">MetaMethod</a> – a standout dev group in the Roblox community.</center></div> 
+    <div class="flag">
+      <img src="/images/Flag-CN.png" class="flag">
+    </div>
+  </div>
+
+  <script>
+    let currentUser = null;
+    let currentSubscriptionButton = null;
+
+    function showLoader() {
+      $('#loader').show();
+      $('#login-prompt').hide();
+      $('#supporter-content').hide();
+    }
+
+    function showLogin() {
+      $('#loader').hide();
+      $('#login-prompt').show();
+      $('#supporter-content').hide();
+    }
+
+    function showSupportContent() {
+      $('#loader').hide();
+      $('#login-prompt').hide();
+      $('#supporter-content').show();
+    }
+
+    function displayMessage(type, text) {
+      const $messageBox = $('#message-box');
+      const $messageText = $('#message-text');
+      $messageText.text(text);
+      $messageBox.removeClass('success error info').addClass(type);
+      if (type === 'success') $messageBox.css('background-color', 'rgba(50, 150, 50, 0.6)');
+      else if (type === 'error') $messageBox.css('background-color', 'rgba(200, 50, 50, 0.6)');
+      else $messageBox.css('background-color', 'rgba(50, 100, 150, 0.6)');
+      $('#message-area').slideDown();
+      setTimeout(() => {
+        $('#message-area').slideUp();
+      }, 6000);
+    }
+
+    function displayInlineError(elementId, text) {
+      const $errorEl = $(`#${elementId}`);
+      $errorEl.text(text).slideDown();
+      setTimeout(() => $errorEl.slideUp(), 5000);
+    }
+
+    function checkUrlParams() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('payment_success')) {
+        displayMessage('success', 'Thank you for your one-time donation!');
+      } else if (urlParams.has('payment_cancelled')) {
+        displayMessage('info', 'One-time payment cancelled.');
+      } else if (urlParams.has('subscription_success')) {
+        displayMessage('success', 'Subscription successful! Thank you for your support.');
+        fetchUserInfo(true);
+      } else if (urlParams.has('subscription_cancelled')) {
+        displayMessage('info', 'Subscription process cancelled.');
+      }
+      if (urlParams.keys().next().value) {
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    }
+
+    async function fetchUserInfo(forceRefresh = false) {
+      if (!forceRefresh && currentUser) {
+        console.log('Using cached user data');
+        updateUI(currentUser);
+        return;
+      }
+      showLoader();
+      try {
+        const response = await fetch('/api/user/me');
+        if (response.ok) {
+          currentUser = await response.json();
+          updateUI(currentUser);
+          if (currentUser) {
+            loadTransactionHistory();
+          }
+        } else if (response.status === 401) {
+          currentUser = null;
+          showLogin();
+        } else {
+          currentUser = null;
+          showLogin();
+          console.error('Failed to fetch user info:', response.statusText);
+          displayMessage('error', 'Could not load your information. Please try refreshing.');
+        }
+      } catch (error) {
+        currentUser = null;
+        showLogin();
+        console.error('Error fetching user info:', error);
+        displayMessage('error', 'Network error fetching your information. Please try again.');
+      }
+    }
+
+    function updateUI(user) {
+      if (!user) {
+        showLogin();
+        $('#transaction-history-section').hide();
+        $('#discord-relogin-prompt-section').hide();
+        return;
+      }
+
+      $('#user-greeting').text(`Welcome, ${user.username}!`);
+      $('#user-avatar').attr('src', user.avatar || '/images/MetaMethodLogo.png');
+      $('#transaction-history-section').show();
+      $('#discord-relogin-prompt-section').show();
+
+      // Reset all status sections
+      $('#supporter-status-section-active').hide();
+      $('#supporter-status-section-donation').hide();
+      $('#cancel-subscription-button').hide();
+      $('#subscription-quantity').prop('disabled', false);
+      $('#paypal-subscribe-button-container').html('');
+
+      const now = new Date();
+
+      // Active subscriber
+      if (user.isSupporter) {
+        let statusText = `You have an active subscription!`;
+        if (user.supporterTierAmount) {
+          statusText += ` ($${user.supporterTierAmount.toFixed(2)} ${user.supporterCurrency || 'USD'} / month)`;
+        }
+
+        $('#supporter-status-text-active').text(statusText);
+        $('#supporter-status-section-active').show();
+        $('#cancel-subscription-button').prop('disabled', false).show();
+        $('#paypal-subscribe-button-container').html('<p style="color: #ccc; margin: 0;">You have an active subscription.</p>');
+        $('#subscription-quantity').prop('disabled', true);
+      }
+
+      // One-time donor with active perks
+      else if (user.supporterPerksExpireAt) {
+        const expiryDate = new Date(user.supporterPerksExpireAt);
+        if (expiryDate > now) {
+          const formattedExpiry = expiryDate.toLocaleDateString(undefined, {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+          const source = user.subscriptionPayments?.length ? 'Your subscription was recently cancelled.' : 'Thank you for your donation!';
+          $('#supporter-status-text-donation').text(`${source} Supporter perks active until ${formattedExpiry}.`);
+          $('#supporter-status-section-donation').show();
+        }
+      }
+
+
+      renderSubscriptionButton();
+      renderOneTimeButton();
+      showSupportContent();
+      checkUrlParams();
+    }
+
+
+
+    function renderPayPalButtons() {
+      if (!currentUser || !currentUser.isSupporter) {
+        renderSubscriptionButton();
+      } else {
+        $('#paypal-subscribe-button-container').html('<p style="color: #ccc; margin: 0;">You have an active subscription.</p>');
+      }
+      renderOneTimeButton();
+    }
+
+    function renderSubscriptionButton() {
+      const quantityInput = document.getElementById('subscription-quantity');
+      const quantity = parseInt(quantityInput.value, 10);
+      const container = document.getElementById('paypal-subscribe-button-container');
+      container.innerHTML = '';
+      $('#subscribe-error').hide().text('');
+
+      if (isNaN(quantity) || quantity < 3) {
+        displayInlineError('subscribe-error', 'Minimum support level is 3 ($3.00 USD).');
+        return;
+      }
+
+      $('#calculated-amount').text(quantity.toFixed(0));
+
+      if (typeof paypal === 'undefined' || !paypal.Buttons) {
+        console.error("PayPal SDK not loaded yet.");
+        displayInlineError('subscribe-error', 'PayPal buttons failed to load. Please refresh.');
+        return;
+      }
+
+      try {
+        currentSubscriptionButton = paypal.Buttons({
+          style: {
+            shape: 'rect',
+            color: 'silver',
+            layout: 'horizontal',
+            label: 'subscribe'
+          },
+          createSubscription: async function(data, actions) {
+            const currentQuantity = parseInt(document.getElementById('subscription-quantity').value, 10);
+            if (isNaN(currentQuantity) || currentQuantity < 3) {
+              displayInlineError('subscribe-error', 'Invalid quantity. Minimum 3.');
+              return Promise.reject(new Error('Invalid quantity'));
+            }
+            $('#subscribe-error').hide().text('');
+
+            try {
+              const backendAmount = (currentQuantity * 1.00).toFixed(2);
+
+              const response = await fetch('/api/paypal/create-subscription', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  amount: backendAmount,
+                  currency: 'USD'
+                })
+              });
+              const details = await response.json();
+              if (!response.ok || details.error) throw new Error(details.error || 'Failed to initiate');
+              return details.subscriptionID;
+            } catch (err) {
+              console.error("Error in createSubscription fetch:", err);
+              displayInlineError('subscribe-error', err.message || 'Error creating subscription.');
+              return Promise.reject(err);
+            }
+          },
+          onApprove: async function(data, actions) {
+            console.log('Subscription Approved:', data);
+            displayMessage('info', 'Processing your subscription...');
+
+            try {
+              const response = await fetch('/api/paypal/capture-subscription', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  subscriptionID: data.subscriptionID
+                }) // Remove orderID
+              });
+              const details = await response.json();
+
+              if (!response.ok || details.error) {
+                throw new Error(details.error || 'Failed to finalize');
+              }
+
+              displayMessage('success', 'Subscription Activated! Thank you!');
+              fetchUserInfo(true);
+            } catch (err) {
+              console.error("Error in onApprove fetch:", err);
+              displayMessage('error', err.message || 'Network error confirming subscription.');
+            }
+          },
+          onCancel: function(data) {
+            console.log('Subscription Cancelled:', data);
+            displayMessage('info', 'Subscription process cancelled.');
+          },
+          onError: function(err) {
+            console.error('PayPal Subscription Button Error:', err);
+            displayInlineError('subscribe-error', 'An error occurred with the PayPal button. Please try again.');
+          }
+        });
+
+        currentSubscriptionButton.render('#paypal-subscribe-button-container').catch(err => {
+          console.error("PayPal button render error:", err);
+          displayInlineError('subscribe-error', 'Could not render PayPal button.');
+        });
+
+      } catch (sdkError) {
+        console.error("Error initializing PayPal Buttons:", sdkError);
+        displayInlineError('subscribe-error', 'Failed to initialize PayPal buttons.');
+      }
+    }
+
+    function renderOneTimeButton() {
+      if (typeof paypal === 'undefined' || typeof paypal.Buttons !== 'function') {
+        console.error("PayPal SDK not loaded");
+        displayInlineError('onetime-error', 'PayPal SDK not ready. Please refresh.');
+        return;
+      }
+
+      const container = document.getElementById('paypal-onetime-button-container');
+      container.innerHTML = '';
+      $('#onetime-error').hide().text('');
+
+      if (typeof paypal === 'undefined' || !paypal.Buttons) {
+        console.error("PayPal SDK not loaded yet.");
+        displayInlineError('onetime-error', 'PayPal buttons failed to load. Please refresh.');
+        return;
+      }
+
+      try {
+        paypal.Buttons({
+            style: {
+              shape: 'rect',
+              color: 'blue',
+              layout: 'horizontal',
+              label: 'pay'
+            },
+
+            // CREATE ORDER
+            createOrder: async function(data, actions) {
+              const amountInput = document.getElementById('onetime-amount');
+              const amount = parseFloat(amountInput.value).toFixed(2);
+
+              if (isNaN(amount) || amount < 3.00) {
+                displayInlineError('onetime-error', 'Minimum donation is $3.00 USD.');
+                return Promise.reject(new Error('Amount must be at least $3.00'));
+              }
+
+              try {
+                const response = await fetch('/api/paypal/create-order', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    amount: amount,
+                    currency: 'USD'
+                  })
+                });
+
+                const details = await response.json();
+
+                if (!response.ok || details.error) {
+                  displayInlineError('onetime-error', details.error || 'Failed to create payment order.');
+                  return Promise.reject(new Error(details.error || 'Backend error'));
+                }
+
+                return details.orderID;
+
+              } catch (err) {
+                console.error("Create Order Error:", err);
+                displayInlineError('onetime-error', 'Network error creating order.');
+                return Promise.reject(err);
+              }
+            },
+
+            // ORDER APPROVED BY USER
+            onApprove: async function(data, actions) {
+              displayMessage('info', 'Processing your donation...');
+
+              try {
+                const response = await fetch('/api/paypal/capture-order', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    orderID: data.orderID
+                  })
+                });
+
+                const result = await response.json();
+
+                if (!response.ok || result.error) {
+                  displayMessage('error', result.error || 'Failed to process donation.');
+                  return;
+                }
+
+                displayMessage('success', 'Thank you for your generous donation!');
+                fetchUserInfo(true);
+
+              } catch (err) {
+                console.error("Capture Error:", err);
+                displayMessage('error', 'Network error capturing donation.');
+              }
+            },
+
+            // USER CANCELLED
+            onCancel: function(data) {
+              displayMessage('info', 'Donation process cancelled.');
+            },
+
+            // ERROR DURING PAYPAL RENDER OR EXECUTION
+            onError: function(err) {
+              console.error("PayPal Button Error:", err);
+              displayInlineError('onetime-error', 'An error occurred with the PayPal button. Please try again.');
+            }
+          }).render('#paypal-onetime-button-container')
+          .catch(err => {
+            console.error("PayPal one-time button render error:", err);
+            displayInlineError('onetime-error', 'Could not render PayPal button.');
+          });
+      } catch (sdkError) {
+        console.error("Error initializing PayPal Buttons (one-time):", sdkError);
+        displayInlineError('onetime-error', 'Failed to initialize PayPal buttons.');
+      }
+    }
+
+    async function loadTransactionHistory() {
+      const $tbody = $('#transaction-history-table tbody');
+      const $table = $('#transaction-history-table');
+      const $loader = $('#history-loader');
+      const $noHistory = $('#no-history-message');
+
+      $tbody.empty();
+      $table.hide();
+      $noHistory.hide();
+      $loader.show();
+
+      try {
+        const response = await fetch('/api/user/transactions');
+        if (!response.ok) {
+          throw new Error(`Failed to load history (${response.status})`);
+        }
+        const transactions = await response.json();
+        $loader.hide();
+
+        if (transactions.length === 0) {
+          $noHistory.show();
+        } else {
+          transactions.forEach(tx => {
+            const txDate = new Date(tx.date).toLocaleDateString();
+            const txAmount = (typeof tx.amount === 'number' && tx.amount > 0) ?
+              `${tx.amount.toFixed(2)} ${tx.currency || 'USD'}` :
+              'N/A';
+            const txIdDisplay = tx.paypalTransactionId || 'N/A';
+            const shortTxId = txIdDisplay.length > 10 && txIdDisplay.startsWith('EVT-') === false && txIdDisplay.startsWith('ACT-') === false ?
+              txIdDisplay.substring(0, 8) + '...' :
+              txIdDisplay;
+
+            $tbody.append(`
+               <tr>
+                 <td>${txDate}</td>
+                 <td>${tx.type || 'Unknown'}</td>
+                 <td>${tx.description || '-'}</td>
+                 <td class="amount">${txAmount}</td>
+                 <td title="${txIdDisplay}">${shortTxId}</td>
+               </tr>`);
+          });
+          $table.show();
+        }
+      } catch (error) {
+        console.error("Error loading transaction history:", error);
+        $loader.hide();
+        $noHistory.text('Error loading history.').show();
+      }
+    }
+
+    async function cancelSubscription() {
+      const $button = $('#cancel-subscription-button');
+      if (!confirm('Are you sure you want to cancel your monthly subscription?')) {
+        return;
+      }
+
+      $button.prop('disabled', true).text('Cancelling...');
+      displayMessage('info', 'Attempting to cancel subscription...');
+
+      try {
+        const response = await fetch('/api/paypal/cancel-subscription', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.error || `Server error (${response.status})`);
+        }
+
+        displayMessage('success', result.message || 'Subscription cancelled successfully!');
+        fetchUserInfo(true);
+
+      } catch (error) {
+        console.error("Cancellation error:", error);
+        displayMessage('error', `Cancellation failed: ${error.message}`);
+        $button.prop('disabled', false).text('Cancel Subscription');
+      }
+    }
+
+    $(document).ready(function() {
+      fetchUserInfo();
+
+      $('#subscription-quantity').on('change input', function() {
+        const quantity = parseInt($(this).val(), 10) || 0;
+        $('#calculated-amount').text(Math.max(0, quantity).toFixed(0));
+        if (!(currentUser && currentUser.isSupporter)) {
+          clearTimeout(window.subRenderTimeout);
+          window.subRenderTimeout = setTimeout(renderSubscriptionButton, 300);
+        }
+      });
+
+      $('#cancel-subscription-button').on('click', cancelSubscription);
+    });
+  </script>
+
+</body>
+
+</html>
